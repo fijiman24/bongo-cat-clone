@@ -24,7 +24,7 @@ $(document).ready(function () {
     // Confetti counter
     var confettiCounter = 0;
 
-    // Make heart confetti rain down from random x-axis locations at random delays
+    // Make cat confetti rain down from random x-axis locations at random delays
     $("#cat-confetti-container").children().each(function () {
         $(this).css("left", `${Math.floor(Math.random() * 90)}vw`)
         $(this).css("animation-delay", `${Math.random() * 10}s`)
@@ -34,19 +34,14 @@ $(document).ready(function () {
     // Confetti popped counter
     var confettiPopped = 0;
 
-    // Hearts pop and disappear when clicked
+    // Confetti pops and disappear when clicked
     $(".cat-confetti").click(function () {
         $(this).css("display", "none");
+        new Audio("assets/sounds/meow.mp3").play();
 
-        meowSoundEffect1 = new Audio("assets/sounds/meow-1.mp3");
-        meowSoundEffect2 = new Audio("assets/sounds/meow-2.mp3");
-        meowChoice = [meowSoundEffect1, meowSoundEffect2];
-        (meowChoice[1]).play();
-
-        // Display Easter Egg instructions and replace emojis if all confetti is popped
+        // Display Easter Egg instructions if all confetti is popped
         confettiPopped++
         if (confettiPopped >= confettiCounter) {
-            new Audio("assets/sounds/kids-cheering.mp3").play();
             $("#easter-egg-instructions").toggle();
         }
     })
@@ -58,7 +53,7 @@ $(document).ready(function () {
         const playButtonSound = new Audio("assets/sounds/squeak.mp3");
         playButtonSound.play();
 
-        // Ensures that only the bongo play buttons are visible (doesn't work in CSS for some reason)
+        // Ensures that only the bongo play buttons are visible
         $("#bongo-play-buttons-container").css("display", "flex");
         $(".synth-play-buttons-container").css("display", "none");
         $(".sing-play-buttons-container").css("display", "none");
@@ -137,6 +132,18 @@ $(document).ready(function () {
     });
 
     $("#synth-d-play-button").mouseup(function() {
+        $("#cat-no-hands").toggle();
+        $("#cat-right-hand").toggle();
+    });
+
+    $("#synth-e-flat-play-button").mousedown(function() {
+        $("#cat-no-hands").toggle();
+        $("#cat-right-hand").toggle();
+        const synthEFlat = new Audio("assets/sounds/synth-e-flat.mp3");
+        synthEFlat.play();
+    });
+
+    $("#synth-e-flat-play-button").mouseup(function() {
         $("#cat-no-hands").toggle();
         $("#cat-right-hand").toggle();
     });

@@ -24,54 +24,41 @@ body {
     to {top: 95vh;}
 }
 
-.welcome-screen-message {
-    font-size: 36px;
+@font-face {
+    font-family: balloons;
+    src: url(assets/Balloons-YYVy.ttf);
+  }
+  
+
+#app-title {
+    font-size: 56px;
     font-family: 'Coming Soon', cursive;
     color: #F1BA24;
     text-align: center;
 }
 
-#welcome-message-subtitle {
-    font-size: 20px;
-}
-
-#five-candle {
-    width: 90px;
-    margin-bottom: -20px;
-    animation-name: side-to-side;
-    animation-duration: 1s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-@keyframes side-to-side {
-    0% {transform: rotate(-20deg)}
-    50% {transform: rotate(20deg)}
-    100% {transform: rotate(-20deg)}
-}
-
-.celebration-emoji {
+.cat-icon {
     width: 100px;
     margin-top: 50px;
 }
 
-#celebration-emoji-2-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
-#celebration-emoji-1 {
+#cat-icon-1 {
     animation-name: spin-horizontal;
     animation-duration: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
-#celebration-emoji-2 {
+#cat-icon-2 {
     animation-name: spin-horizontal-reverse;
     animation-duration: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+}
+
+#cat-icon-2-container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 @keyframes spin-horizontal {
@@ -84,30 +71,6 @@ body {
     0% {transform: scaleX(-1);}
     50% {transform: scaleX(1);}
     100% {transform: scaleX(-1);}
-}
-
-#just-kidding {
-    color:rgb(85, 255, 255)
-}
-
-#break-up-welcome-screen-message-container {
-    display: none;
-    background-image: url("assets/pictures/broken-heart.png");
-    background-size: 300px;
-    width: 300px;
-    height: 300px;
-    margin: auto;
-}
-
-#sophia-emoji {
-    display: none;
-    width: 90px;
-}
-
-#caleb-emoji {
-    display: none;
-    width: 150px;
-    margin-top: -90px;
 }
 
 #play-button-container {
