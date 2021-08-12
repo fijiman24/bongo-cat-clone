@@ -29,6 +29,10 @@ body {
     src: url(assets/Balloons-YYVy.ttf);
   }
   
+#app-title-container {
+    width: 300px;
+    margin: auto;
+}
 
 #app-title {
     font-size: 56px;
