@@ -62,224 +62,135 @@ $(document).ready(function () {
     // Ensures that keydown functions trigger once per keypress
     var keyPressed = false;
     
-    // Bongo button functions
-    $("#bongo-left-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-        const bongoHitLeft = new Audio("assets/sounds/bongo-hit-high.wav");
-        bongoHitLeft.play();
-    });
+    // Functions for playing with left paw
+    var leftPawInstruments = ["bongo-left", "synth-a", "synth-b", "synth-c", "synth-d"];
+    for (let i = 0; i < leftPawInstruments.length; i++) {
+        $(`#${leftPawInstruments[i]}-play-button`).mousedown(function() {
+            $("#cat-no-hands").toggle();
+            $("#cat-left-hand").toggle();
+            new Audio(`assets/sounds/${leftPawInstruments[i]}.mp3`).play();
+        });
 
-    $("#bongo-left-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-    });
+        $(`#${leftPawInstruments[i]}-play-button`).mouseup(function() {
+            $("#cat-no-hands").toggle();
+            $("#cat-left-hand").toggle();
+        });
+    };
 
-    $("#bongo-right-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-        const bongoHitRight = new Audio("assets/sounds/bongo-hit-low.wav");
-        bongoHitRight.play();
-    });
+    // Functions for playing with right paw
+    var rightPawInstruments = ["bongo-right", "synth-e-flat", "synth-e", "synth-f", "synth-g"];
+    for (let i = 0; i < rightPawInstruments.length; i++) {
+        $(`#${rightPawInstruments[i]}-play-button`).mousedown(function() {
+            $("#cat-no-hands").toggle();
+            $("#cat-right-hand").toggle();
+            new Audio(`assets/sounds/${rightPawInstruments[i]}.mp3`).play();
+        });
 
-    $("#bongo-right-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-    });
+        $(`#${rightPawInstruments[i]}-play-button`).mouseup(function() {
+            $("#cat-no-hands").toggle();
+            $("#cat-right-hand").toggle();
+        });
+    };
 
-    // Synth button functions
-    $("#synth-a-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-        const synthA = new Audio("assets/sounds/synth-a.mp3");
-        synthA.play();
-    });
-
-    $("#synth-a-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-    });
-
-    $("#synth-b-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-        const synthB = new Audio("assets/sounds/synth-b.mp3");
-        synthB.play();
-    });
-
-    $("#synth-b-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-    });
-
-    $("#synth-c-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-        const synthC = new Audio("assets/sounds/synth-c.mp3");
-        synthC.play();
-    });
-
-    $("#synth-c-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-left-hand").toggle();
-    });
-
-    $("#synth-d-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-        const synthD = new Audio("assets/sounds/synth-d.mp3");
-        synthD.play();
-    });
-
-    $("#synth-d-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-    });
-
-    $("#synth-e-flat-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-        const synthEFlat = new Audio("assets/sounds/synth-e-flat.mp3");
-        synthEFlat.play();
-    });
-
-    $("#synth-e-flat-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-    });
-
-    $("#synth-e-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-        const synthE = new Audio("assets/sounds/synth-e.mp3");
-        synthE.play();
-    });
-
-    $("#synth-e-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-    });
-
-    $("#synth-f-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-        const synthF = new Audio("assets/sounds/synth-f.mp3");
-        synthF.play();
-    });
-
-    $("#synth-f-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-    });
+    // Functions for singing
+    var singingNotes = ["do", "re", "mi", "fa", "so", "la", "ti", "do-high"];
+    for (i = 0; i < singingNotes.length; i++) {
+        $(`#sing-${singingNotes[i]}-play-button`).mousedown(function() {
+            console.log(singingNotes[i]); // Spits out "undefined" for some reason
+            $("#cat-no-hands").toggle();
+            $("#cat-singing").toggle();
+            new Audio(`assets/sounds/sing-${singingNotes[i]}.mp3`).play();
+        });
     
-    $("#synth-g-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-        const synthG = new Audio("assets/sounds/synth-g.mp3");
-        synthG.play();
-    });
+        $(`#sing-${singingNotes[i]}-play-button`).mouseup(function() {
+            $("#cat-no-hands").toggle();
+            $("#cat-singing").toggle();
+        });
+    }
 
-    $("#synth-g-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-right-hand").toggle();
-    });
+    // $("#sing-re-play-button").mousedown(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    //     const singRe = new Audio("assets/sounds/sing-re.mp3");
+    //     singRe.play();
+    // });
 
-    // Sing button functions
-    $("#sing-do-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singDo = new Audio("assets/sounds/sing-do.mp3");
-        singDo.play();
-    });
+    // $("#sing-re-play-button").mouseup(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    // });  
 
-    $("#sing-do-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    });
+    // $("#sing-mi-play-button").mousedown(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    //     const singMi = new Audio("assets/sounds/sing-mi.mp3");
+    //     singMi.play();
+    // });
 
-    $("#sing-re-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singRe = new Audio("assets/sounds/sing-re.mp3");
-        singRe.play();
-    });
+    // $("#sing-mi-play-button").mouseup(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    // });  
 
-    $("#sing-re-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    });  
+    // $("#sing-fa-play-button").mousedown(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    //     const singFa = new Audio("assets/sounds/sing-fa.mp3");
+    //     singFa.play();
+    // });
 
-    $("#sing-mi-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singMi = new Audio("assets/sounds/sing-mi.mp3");
-        singMi.play();
-    });
+    // $("#sing-fa-play-button").mouseup(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    // }); 
 
-    $("#sing-mi-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    });  
+    // $("#sing-so-play-button").mousedown(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    //     const singSo = new Audio("assets/sounds/sing-so.mp3");
+    //     singSo.play();
+    // });
 
-    $("#sing-fa-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singFa = new Audio("assets/sounds/sing-fa.mp3");
-        singFa.play();
-    });
+    // $("#sing-so-play-button").mouseup(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    // }); 
 
-    $("#sing-fa-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    }); 
+    // $("#sing-la-play-button").mousedown(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    //     const singLa = new Audio("assets/sounds/sing-la.mp3");
+    //     singLa.play();
+    // });
 
-    $("#sing-so-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singSo = new Audio("assets/sounds/sing-so.mp3");
-        singSo.play();
-    });
+    // $("#sing-la-play-button").mouseup(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    // }); 
 
-    $("#sing-so-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    }); 
+    // $("#sing-ti-play-button").mousedown(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    //     const singTi = new Audio("assets/sounds/sing-ti.mp3");
+    //     singTi.play();
+    // });
 
-    $("#sing-la-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singLa = new Audio("assets/sounds/sing-la.mp3");
-        singLa.play();
-    });
+    // $("#sing-ti-play-button").mouseup(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    // }); 
 
-    $("#sing-la-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    }); 
+    // $("#sing-do-high-play-button").mousedown(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    //     const singDoHigh = new Audio("assets/sounds/sing-do-high.mp3");
+    //     singDoHigh.play();
+    // });
 
-    $("#sing-ti-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singTi = new Audio("assets/sounds/sing-ti.mp3");
-        singTi.play();
-    });
-
-    $("#sing-ti-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    }); 
-
-    $("#sing-do-high-play-button").mousedown(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-        const singDoHigh = new Audio("assets/sounds/sing-do-high.mp3");
-        singDoHigh.play();
-    });
-
-    $("#sing-do-high-play-button").mouseup(function() {
-        $("#cat-no-hands").toggle();
-        $("#cat-singing").toggle();
-    }); 
+    // $("#sing-do-high-play-button").mouseup(function() {
+    //     $("#cat-no-hands").toggle();
+    //     $("#cat-singing").toggle();
+    // }); 
 
     // Put paw down functions
     $(document).keydown(function (event) {
