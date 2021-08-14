@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    
     // Assign keycodes to named variables
     // Bongo
     var leftArrow = 37;
@@ -7,7 +6,10 @@ $(document).ready(function () {
     // Synth
     var keyQ = 81;
     var keyW = 87;
-    var keyE = 69
+    var keyE = 69;
+    var keyR = 82;
+
+    var keyU = 85;
     var keyI = 73;
     var keyO = 79;
     var keyP = 80;
@@ -16,6 +18,7 @@ $(document).ready(function () {
     var keyS = 83;
     var keyD = 68;
     var keyF = 70;
+
     var keyJ = 74;
     var keyK = 75;
     var keyL = 76;
@@ -59,172 +62,111 @@ $(document).ready(function () {
         $(".sing-play-buttons-container").css("display", "none");
     });
 
+    function leftPawPlay() {
+        if ($("#cat-no-hands").css("display") == "inline") {
+            $("#cat-no-hands").css("display", "none");
+            $("#cat-left-hand").css("display", "inline");
+        } else if ($("#cat-right-hand").css("display") == "inline") {
+            $("#cat-right-hand").css("display", "none");
+            $("#cat-both-hands").css("display", "inline");
+        }
+    };
+
+    function leftPawUnplay() {
+        if ($("#cat-left-hand").css("display") == "inline") {
+            $("#cat-left-hand").css("display", "none");
+            $("#cat-no-hands").css("display", "inline");
+        } else if ($("#cat-both-hands").css("display") == "inline") {
+            $("#cat-both-hands").css("display", "none");
+            $("#cat-right-hand").css("display", "inline");
+        }
+    };
+
+    function rightPawPlay() {
+        if ($("#cat-no-hands").css("display") == "inline") {
+            $("#cat-no-hands").css("display", "none");
+            $("#cat-right-hand").css("display", "inline");
+        } else if ($("#cat-left-hand").css("display") == "inline") {
+            $("#cat-left-hand").css("display", "none");
+            $("#cat-both-hands").css("display", "inline");
+        }
+    };
+
+    function rightPawUnplay() {
+        if ($("#cat-right-hand").css("display") == "inline") {
+            $("#cat-right-hand").css("display", "none");
+            $("#cat-no-hands").css("display", "inline");
+        } else if ($("#cat-both-hands").css("display") == "inline") {
+            $("#cat-both-hands").css("display", "none");
+            $("#cat-left-hand").css("display", "inline");
+        }
+    };
+
     // Ensures that keydown functions trigger once per keypress
     var keyPressed = false;
-    
+
     // Functions for playing with left paw
     var leftPawInstruments = ["bongo-left", "synth-a", "synth-b", "synth-c", "synth-d"];
     for (let i = 0; i < leftPawInstruments.length; i++) {
-        $(`#${leftPawInstruments[i]}-play-button`).mousedown(function() {
-            $("#cat-no-hands").toggle();
-            $("#cat-left-hand").toggle();
+        $(`#${leftPawInstruments[i]}-play-button`).mousedown(function () {
             new Audio(`assets/sounds/${leftPawInstruments[i]}.mp3`).play();
+            leftPawPlay();
         });
 
-        $(`#${leftPawInstruments[i]}-play-button`).mouseup(function() {
-            $("#cat-no-hands").toggle();
-            $("#cat-left-hand").toggle();
+        $(`#${leftPawInstruments[i]}-play-button`).mouseup(function () {
+            leftPawUnplay();
         });
     };
 
     // Functions for playing with right paw
     var rightPawInstruments = ["bongo-right", "synth-e-flat", "synth-e", "synth-f", "synth-g"];
     for (let i = 0; i < rightPawInstruments.length; i++) {
-        $(`#${rightPawInstruments[i]}-play-button`).mousedown(function() {
-            $("#cat-no-hands").toggle();
-            $("#cat-right-hand").toggle();
+        $(`#${rightPawInstruments[i]}-play-button`).mousedown(function () {
             new Audio(`assets/sounds/${rightPawInstruments[i]}.mp3`).play();
+            rightPawPlay();
         });
 
-        $(`#${rightPawInstruments[i]}-play-button`).mouseup(function() {
-            $("#cat-no-hands").toggle();
-            $("#cat-right-hand").toggle();
+        $(`#${rightPawInstruments[i]}-play-button`).mouseup(function () {
+            rightPawUnplay();
         });
     };
 
     // Functions for singing
     var singingNotes = ["do", "re", "mi", "fa", "so", "la", "ti", "do-high"];
-    for (i = 0; i < singingNotes.length; i++) {
-        $(`#sing-${singingNotes[i]}-play-button`).mousedown(function() {
-            console.log(singingNotes[i]); // Spits out "undefined" for some reason
+    for (let i = 0; i < singingNotes.length; i++) {
+        $(`#sing-${singingNotes[i]}-play-button`).mousedown(function () {
             $("#cat-no-hands").toggle();
             $("#cat-singing").toggle();
             new Audio(`assets/sounds/sing-${singingNotes[i]}.mp3`).play();
         });
-    
-        $(`#sing-${singingNotes[i]}-play-button`).mouseup(function() {
+
+        $(`#sing-${singingNotes[i]}-play-button`).mouseup(function () {
             $("#cat-no-hands").toggle();
             $("#cat-singing").toggle();
         });
     }
 
-    // $("#sing-re-play-button").mousedown(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    //     const singRe = new Audio("assets/sounds/sing-re.mp3");
-    //     singRe.play();
-    // });
 
-    // $("#sing-re-play-button").mouseup(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    // });  
+    var instrumentKeys = [leftArrow, rightArrow, keyQ, keyW, keyE, keyR, keyU, keyI, keyO, keyP, keyA, keyS, keyD, keyF, keyJ, keyK, keyL, semicolon];
+    var instrumentNotes = ["bongo-left", "bongo-right", "synth-a", "synth-b", "synth-c", "synth-d", "synth-e-flat", "synth-e", "synth-f", "synth-g", "sing-do", "sing-re", "sing-mi", "sing-fa", "sing-so", "sing-la", "sing-ti", "sing-do-high"];
+    // Functions for playing instrument with keys
+    for (let i = 0; i < instrumentKeys.length; i++) {
+        $(document).keydown(function (event) {
+            var keyCode = event.which;
+            if (keyCode === instrumentKeys[i] && keyPressed == false) {
+                keyPressed = true;
+                $(`#${instrumentNotes[i]}-play-button`).mousedown();
+            }
+        });
 
-    // $("#sing-mi-play-button").mousedown(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    //     const singMi = new Audio("assets/sounds/sing-mi.mp3");
-    //     singMi.play();
-    // });
-
-    // $("#sing-mi-play-button").mouseup(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    // });  
-
-    // $("#sing-fa-play-button").mousedown(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    //     const singFa = new Audio("assets/sounds/sing-fa.mp3");
-    //     singFa.play();
-    // });
-
-    // $("#sing-fa-play-button").mouseup(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    // }); 
-
-    // $("#sing-so-play-button").mousedown(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    //     const singSo = new Audio("assets/sounds/sing-so.mp3");
-    //     singSo.play();
-    // });
-
-    // $("#sing-so-play-button").mouseup(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    // }); 
-
-    // $("#sing-la-play-button").mousedown(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    //     const singLa = new Audio("assets/sounds/sing-la.mp3");
-    //     singLa.play();
-    // });
-
-    // $("#sing-la-play-button").mouseup(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    // }); 
-
-    // $("#sing-ti-play-button").mousedown(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    //     const singTi = new Audio("assets/sounds/sing-ti.mp3");
-    //     singTi.play();
-    // });
-
-    // $("#sing-ti-play-button").mouseup(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    // }); 
-
-    // $("#sing-do-high-play-button").mousedown(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    //     const singDoHigh = new Audio("assets/sounds/sing-do-high.mp3");
-    //     singDoHigh.play();
-    // });
-
-    // $("#sing-do-high-play-button").mouseup(function() {
-    //     $("#cat-no-hands").toggle();
-    //     $("#cat-singing").toggle();
-    // }); 
-
-    // Put paw down functions
-    $(document).keydown(function (event) {
-        var keyCode = event.which;
-        if (keyCode === leftArrow && keyPressed == false) { // Put left paw down if left arrow is pressed
-            keyPressed = true;
-            $("#bongo-left-play-button").mousedown();
-        } else if (keyCode === rightArrow && keyPressed == false) { // Put right paw down if right arrow is pressed
-            keyPressed = true;
-            $("#bongo-right-play-button").mousedown();
-        } else if (keyCode === 32 && keyPressed == false) { // Start singing if spacebar is pressed
-            keyPressed = true;
-            $("#cat-no-hands").toggle();
-            $("#cat-singing").toggle();
-            const singSong = new Audio("assets/sounds/sing-do.mp3")
-            singSong.play();
-        }
-    });
-
-    // Put paw up functions 
-    $(document).keyup(function (event) {
-        var keyCode = event.which;
-        if (keyCode === 37 && keyPressed == true) { // Put left paw up if left arrow is released
-            keyPressed = false;
-            $("#bongo-left-play-button").mouseup();
-        } else if (keyCode === 39 && keyPressed == true) { // Put right paw up if right arrow is released
-            keyPressed = false;
-            $("#bongo-right-play-button").mouseup();
-        } else if (keyCode === 32 && keyPressed == true) { // Stop singing if spacebar is released
-            keyPressed = false;
-            $("#cat-no-hands").toggle();
-            $("#cat-singing").toggle();
-        }
-    });
+        $(document).keyup(function (event) {
+            var keyCode = event.which;
+            if (keyCode === instrumentKeys[i] && keyPressed == true) {
+                keyPressed = false;
+                $(`#${instrumentNotes[i]}-play-button`).mouseup();
+            }
+        });
+    };
 
     // Change instrument functions
     $("#change-to-bongo").click(function () {  // Change to bongo button
