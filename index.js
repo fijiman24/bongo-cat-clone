@@ -102,9 +102,6 @@ $(document).ready(function () {
         }
     };
 
-    // Ensures that keydown functions trigger once per keypress
-    var keyPressed = false;
-
     // Functions for playing with left paw
     var leftPawInstruments = ["bongo-left", "synth-a", "synth-b", "synth-c", "synth-d"];
     for (let i = 0; i < leftPawInstruments.length; i++) {
@@ -146,23 +143,21 @@ $(document).ready(function () {
         });
     }
 
-
+    // Functions for playing instrument with keys
     var instrumentKeys = [leftArrow, rightArrow, keyQ, keyW, keyE, keyR, keyU, keyI, keyO, keyP, keyA, keyS, keyD, keyF, keyJ, keyK, keyL, semicolon];
     var instrumentNotes = ["bongo-left", "bongo-right", "synth-a", "synth-b", "synth-c", "synth-d", "synth-e-flat", "synth-e", "synth-f", "synth-g", "sing-do", "sing-re", "sing-mi", "sing-fa", "sing-so", "sing-la", "sing-ti", "sing-do-high"];
-    // Functions for playing instrument with keys
+
     for (let i = 0; i < instrumentKeys.length; i++) {
         $(document).keydown(function (event) {
             var keyCode = event.which;
-            if (keyCode === instrumentKeys[i] && keyPressed == false) {
-                keyPressed = true;
+            if (keyCode === instrumentKeys[i]) {
                 $(`#${instrumentNotes[i]}-play-button`).mousedown();
             }
         });
 
         $(document).keyup(function (event) {
             var keyCode = event.which;
-            if (keyCode === instrumentKeys[i] && keyPressed == true) {
-                keyPressed = false;
+            if (keyCode === instrumentKeys[i]) {
                 $(`#${instrumentNotes[i]}-play-button`).mouseup();
             }
         });
@@ -199,4 +194,30 @@ $(document).ready(function () {
         $(".synth-play-buttons-container").css("display", "none");
         $(".sing-play-buttons-container").css("display", "flex");
     });
+
+    // Automatically switch to the correct instrument if a key corresponding to an instrument is pressed
+    $(document).keydown(function (event) {
+        var bongoKeys = [leftArrow, rightArrow];
+        var keyCode = event.which;
+        if (bongoKeys.includes(keyCode)) {
+            $("#change-to-bongo").click();
+        } 
+    });
+
+    $(document).keydown(function (event) {
+        var synthKeys = [keyQ, keyW, keyE, keyR, keyU, keyI, keyO, keyP];
+        var keyCode = event.which;
+        if (synthKeys.includes(keyCode)) {
+            $("#change-to-synth").click();
+        } 
+    });
+
+    $(document).keydown(function (event) {
+        var singKeys = [keyA, keyS, keyD, keyF, keyJ, keyK, keyL, semicolon];
+        var keyCode = event.which;
+        if (singKeys.includes(keyCode)) {
+            $("#change-to-microphone").click();
+        } 
+    });
+
 });
