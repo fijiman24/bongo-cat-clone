@@ -47,7 +47,7 @@ $(document).ready(function () {
         if (confettiPopped >= confettiCounter) {
             $("#easter-egg-instructions").toggle();
         }
-    })
+    });
 
     // Play button squeaks and welcome message screen turns into bongo cat screen 
     $("#play-button").click(function () {
@@ -62,6 +62,7 @@ $(document).ready(function () {
         $(".sing-play-buttons-container").css("display", "none");
     });
 
+    // Functions for animating cat
     function leftPawPlay() {
         if ($("#cat-no-hands").css("display") == "inline") {
             $("#cat-no-hands").css("display", "none");
@@ -141,7 +142,7 @@ $(document).ready(function () {
             $("#cat-no-hands").toggle();
             $("#cat-singing").toggle();
         });
-    }
+    };
 
     // Functions for playing instrument with keys
     var instrumentKeys = [leftArrow, rightArrow, keyQ, keyW, keyE, keyR, keyU, keyI, keyO, keyP, keyA, keyS, keyD, keyF, keyJ, keyK, keyL, semicolon];
@@ -222,5 +223,4 @@ $(document).ready(function () {
             $("#change-to-microphone").click();
         } 
     });
-
 });
