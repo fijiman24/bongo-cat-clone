@@ -146,11 +146,13 @@ $(document).ready(function () {
     // Functions for playing instrument with keys
     var instrumentKeys = [leftArrow, rightArrow, keyQ, keyW, keyE, keyR, keyU, keyI, keyO, keyP, keyA, keyS, keyD, keyF, keyJ, keyK, keyL, semicolon];
     var instrumentNotes = ["bongo-left", "bongo-right", "synth-a", "synth-b", "synth-c", "synth-d", "synth-e-flat", "synth-e", "synth-f", "synth-g", "sing-do", "sing-re", "sing-mi", "sing-fa", "sing-so", "sing-la", "sing-ti", "sing-do-high"];
+    var isDown = {leftArrow: false, rightArrow: false, keyQ: false, keyW: false, keyE: false, keyR: false, keyU: false, keyI: false, keyO: false, keyP: false, keyA: false, keyS: false, keyD: false, keyF: false, keyJ: false, keyK: false, keyL: false, semicolon: false}
 
     for (let i = 0; i < instrumentKeys.length; i++) {
         $(document).keydown(function (event) {
             var keyCode = event.which;
-            if (keyCode === instrumentKeys[i]) {
+            if (keyCode === instrumentKeys[i] && !(isDown[keyCode])) {
+                isDown[keyCode] = true;
                 $(`#${instrumentNotes[i]}-play-button`).mousedown();
             }
         });
@@ -158,6 +160,7 @@ $(document).ready(function () {
         $(document).keyup(function (event) {
             var keyCode = event.which;
             if (keyCode === instrumentKeys[i]) {
+                isDown[keyCode] = false;
                 $(`#${instrumentNotes[i]}-play-button`).mouseup();
             }
         });
