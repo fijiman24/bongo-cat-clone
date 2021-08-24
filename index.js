@@ -57,9 +57,7 @@ $(document).ready(function () {
         playButtonSound.play();
 
         // Ensures that only the bongo play buttons are visible
-        $("#bongo-play-buttons-container").css("display", "flex");
-        $(".synth-play-buttons-container").css("display", "none");
-        $(".sing-play-buttons-container").css("display", "none");
+        $("#change-to-bongo").click();
     });
 
     // Functions for animating cat
@@ -177,6 +175,10 @@ $(document).ready(function () {
         $("#bongo-play-buttons-container").css("display", "flex");
         $(".synth-play-buttons-container").css("display", "none");
         $(".sing-play-buttons-container").css("display", "none");
+        // Change instrument change button border to reflect active instrument
+        $("#change-to-bongo").css("border-color", "green");
+        $("#change-to-synth").css("border-color", "#f1ba24");
+        $("#change-to-microphone").css("border-color", "#f1ba24");
     });
 
     $("#change-to-synth").click(function () { // Change to synth button
@@ -187,6 +189,10 @@ $(document).ready(function () {
         $("#bongo-play-buttons-container").css("display", "none");
         $(".synth-play-buttons-container").css("display", "flex");
         $(".sing-play-buttons-container").css("display", "none");
+
+        $("#change-to-bongo").css("border-color", "#f1ba24");
+        $("#change-to-synth").css("border-color", "green");
+        $("#change-to-microphone").css("border-color", "#f1ba24");
     });
 
     $("#change-to-microphone").click(function () { // Change to microphone button
@@ -197,6 +203,10 @@ $(document).ready(function () {
         $("#bongo-play-buttons-container").css("display", "none");
         $(".synth-play-buttons-container").css("display", "none");
         $(".sing-play-buttons-container").css("display", "flex");
+
+        $("#change-to-bongo").css("border-color", "#f1ba24");
+        $("#change-to-synth").css("border-color", "#f1ba24");
+        $("#change-to-microphone").css("border-color", "green");
     });
 
     // Automatically switch to the correct instrument if a key corresponding to an instrument is pressed
