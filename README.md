@@ -33,6 +33,7 @@ First summer project.
 -- -- -- sing-re.mp3 - https://tehmerow.itch.io/kk-slider-sfz
 -- -- -- sing-so.mp3 - https://tehmerow.itch.io/kk-slider-sfz
 -- -- -- sing-ti.mp3 - https://tehmerow.itch.io/kk-slider-sfz
+-- -- -- squeak.mp3 - 
 -- -- -- synth-a.mp3 - https://archive.org/details/SynthesizedPianoNotes/
 -- -- -- synth-b.mp3 - https://archive.org/details/SynthesizedPianoNotes/
 -- -- -- synth-c.mp3 - https://archive.org/details/SynthesizedPianoNotes/
