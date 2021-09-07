@@ -227,7 +227,7 @@ $(document).ready(function () {
     });
 
     var easterEggCodePosition = 0;
-    $("button").click(function (event) {
+    $("button").mousedown(function (event) {
         var easterEggCodeSequence = ["f", "f", "e-flat", "f", "g", "c", "e-flat"];
         var easterEggComponent = `synth-${easterEggCodeSequence[easterEggCodePosition]}-play-button`;
 
